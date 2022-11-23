@@ -10,7 +10,8 @@ export default abstract class Player extends Actor {
 		super(game, _location);
 
 		game.Engine.InputManager.RegisterKeyListener("m", this.handleMoveKey);
-		game.Engine.InputManager.RegisterKeyListener("c", this.handleMoveKey);
+		game.Engine.InputManager.RegisterKeyListener("c", this.handleCombatKey);
+		game.Engine.InputManager.RegisterNumKeyListener(this.handleNumKey);
 	}
 
 	async PrepareNextAction() {
@@ -22,6 +23,10 @@ export default abstract class Player extends Actor {
 	}
 
 	handleCombatKey(event: KeyboardEvent) {
+
+	}
+
+	handleNumKey(num: number, event: KeyboardEvent) {
 
 	}
 }

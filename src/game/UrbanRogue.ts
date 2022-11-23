@@ -5,10 +5,10 @@ export default class UrbanRogue extends Game {
 	constructor() {
 		super();
 
-		this.World = new UrbanRogueWorld(this);
+		this.world = new UrbanRogueWorld(this);
 	}
 
 	Load() {
-		this.World.Generate();
+		this.world.Generate();
 	}
 }

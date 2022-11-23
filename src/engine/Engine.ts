@@ -8,6 +8,8 @@ export default class Engine {
 	public readonly TurnManager: TurnManager;
 	public readonly InputManager: InputManager;
 	private renderers: Renderer[];
+	private renderInterval: NodeJS.Timer;
+	private fps: number;
 
 	constructor(private game: Game) {
 		this.TurnManager = new TurnManager();
@@ -22,5 +24,10 @@ export default class Engine {
 	Render() {
 		for (let renderer of this.renderers)
 			renderer(this.game);
+	}
+
+	StartRenderLoop(_fps: number) {
+		this.renderInterval = setInterval(() => this.Render(), 1 / _fps);
+		this.fps = _fps;
 	}
 }

@@ -4,7 +4,7 @@ export default class TurnManager {
 	private actors: Map<Actor, boolean>;
 
 	constructor() {
-
+		this.actors = new Map<Actor, boolean>();
 	}
 
 	RegisterActor(actor: Actor) {

@@ -7,18 +7,18 @@ export default class UrbanRogueWorld extends World {
 	Generate() {
 		// Instantiate nodes
 		this.root = new VirtualNode("Basic House", "A basic house");
-		var driveway = new GroundNode("Driveway", "The driveway for the house");
-		var frontDoor = new GroundNode("Front Door", "The front door of the house");
-		var backDoor = new GroundNode("Back Door", "The back door of the house");
-		var window = new GroundNode("Window", "The window of the house");
-		var entranceHallway = new GroundNode("Entrance Hallway", "A hallway at the entrance of the house");
-		var kitchen = new GroundNode("Kitchen", "The kitchen of the house");
-		var livingRoom = new GroundNode("Living Room", "The living room of the house");
-		var backHallway = new GroundNode("Back Hallway", "A hallway at the back of the house");
-		var bedroom = new GroundNode("Bedroom", "The bedroom of the house");
+		var driveway = new GroundNode("Driveway", "The driveway for the house", this.root);
+		var frontDoor = new GroundNode("Front Door", "The front door of the house", this.root);
+		var backDoor = new GroundNode("Back Door", "The back door of the house", this.root);
+		var window = new GroundNode("Window", "The window of the house", this.root);
+		var entranceHallway = new GroundNode("Entrance Hallway", "A hallway at the entrance of the house", this.root);
+		var kitchen = new GroundNode("Kitchen", "The kitchen of the house", this.root);
+		var livingRoom = new GroundNode("Living Room", "The living room of the house", this.root);
+		var backHallway = new GroundNode("Back Hallway", "A hallway at the back of the house", this.root);
+		var bedroom = new GroundNode("Bedroom", "The bedroom of the house", this.root);
 
 		// Instantiate entities
-		var player = new UrbanRoguePlayer(this.game, driveway);
+		this.player = new UrbanRoguePlayer(this.game, driveway);
 
 		// Create edges
 		this.root.NestedNode = driveway;

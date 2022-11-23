@@ -10,6 +10,8 @@
 
 	const game = new UrbanRogue();
 	game.Engine.AddRenderer(render);
+	game.Load();
+	game.Start();
 
 	function render() {}
 </script>

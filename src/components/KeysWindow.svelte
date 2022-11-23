@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type Game from "../game/Game";
+	import type Game from "../game/UrbanRogue";
 
 	export let game: Game;
-	game.engine.AddRenderer(render);
+	game.Engine.AddRenderer(render);
 
 	function render() {}
 </script>

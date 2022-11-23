@@ -35,10 +35,18 @@ export const Flags_Window: EdgeFlags = {
 	rangedAttack: true
 };
 
+export const Flags_WideOpenSpace: EdgeFlags = {
+	movement: true,
+	combatMove: false,
+	visbility: true,
+	closeAttack: false,
+	rangedAttack: true
+};
+
 export default class Node {
 	protected edges: Map<Node, Edge>;
 
-	constructor(public readonly name: string, public readonly desc: string) {
+	constructor(public readonly Name: string, public readonly Desc: string, public readonly Parent?: VirtualNode) {
 		this.edges = new Map<Node, Edge>();
 	}
 
@@ -66,8 +74,8 @@ export default class Node {
 export class GroundNode extends Node {
 	protected entities: Map<NodeEntity, number>;
 
-	constructor(name: string, desc: string) {
-		super(name, desc);
+	constructor(name: string, desc: string, parent: VirtualNode) {
+		super(name, desc, parent);
 
 		this.entities = new Map<Entity, number>();
 	}
@@ -108,8 +116,8 @@ export class GroundNode extends Node {
 export class VirtualNode extends Node {
 	public NestedNode: Node;
 
-	constructor(name: string, desc: string, nestedNode?: Node) {
-		super(name, desc);
+	constructor(name: string, desc: string, parent?: VirtualNode, nestedNode?: Node) {
+		super(name, desc, parent);
 
 		this.NestedNode = nestedNode;
 	}
