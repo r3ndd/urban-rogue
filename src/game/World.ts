@@ -1,4 +1,3 @@
-import Player from "../engine/entity/Player";
 import { GroundNode, Flags_OpenPath, VirtualNode, Flags_ObscuredPath, Flags_Window } from "../engine/world/Node";
 import World from "../engine/world/World";
 import UrbanRoguePlayer from "./Player";

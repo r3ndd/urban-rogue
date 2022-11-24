@@ -1,4 +1,5 @@
 import Game from "../engine/Game";
+import UrbanRogueControls from "./ControlsManager";
 import UrbanRogueWorld from "./World";
 
 export default class UrbanRogue extends Game {
@@ -6,6 +7,7 @@ export default class UrbanRogue extends Game {
 		super();
 
 		this.world = new UrbanRogueWorld(this);
+		this.controls = new UrbanRogueControls(this);
 	}
 
 	Load() {

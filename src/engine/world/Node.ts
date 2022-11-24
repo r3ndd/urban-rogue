@@ -2,6 +2,7 @@ import type Entity from "../entity/Entity";
 import type Game from "../Game";
 
 type NodeEntity = Entity | typeof Entity;
+type NodeType = "Ground" | "Virtual";
 
 interface EdgeFlags {
 	movement: boolean
@@ -67,6 +68,10 @@ export default class Node {
 
 	GetEdge(node: Node): Edge {
 		return this.edges.get(node);
+	}
+
+	get AdjacentNodes(): IterableIterator<Node> {
+		return this.edges.keys();
 	}
 
 }

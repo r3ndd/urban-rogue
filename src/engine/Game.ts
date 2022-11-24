@@ -1,3 +1,4 @@
+import type ControlsManager from "./ControlsManager";
 import Engine from "./Engine";
 import type Player from "./entity/Player";
 import type World from "./world/World";
@@ -5,6 +6,7 @@ import type World from "./world/World";
 export default abstract class Game {
 	protected engine: Engine;
 	protected world: World;
+	protected controls: ControlsManager;
 	protected fps: 10;
 
 	constructor() {
@@ -25,5 +27,9 @@ export default abstract class Game {
 
 	get Player(): Player {
 		return this.world.Player;
+	}
+
+	get Controls(): ControlsManager {
+		return this.controls;
 	}
 }
