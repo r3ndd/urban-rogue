@@ -126,10 +126,19 @@ export class VirtualNode extends Node {
 
 		this.NestedNode = nestedNode;
 	}
+
+	GetNextGroundNode(): GroundNode {
+		var node: Node = this;
+
+		while ((node as VirtualNode).NestedNode != null)
+			node = (node as VirtualNode).NestedNode;
+
+		return node as GroundNode;
+	}
 }
 
 export class Edge {
-	constructor(protected nodeA: Node, protected nodeB: Node, protected flags: EdgeFlags) { }
+	constructor(protected nodeA: Node, protected nodeB: Node, protected flags: EdgeFlags, protected length: Number = 0) { }
 
 	UpdateFlag(flag: string, value: boolean) {
 		this.flags[flag] = value;

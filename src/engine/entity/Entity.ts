@@ -1,7 +1,8 @@
 import type Game from "../Game";
 import type Actor from "./actions/Actor";
 import type { Reaction } from "./actions/Action";
-import type { GroundNode } from "../world/Node";
+import type Node from "../world/Node";
+import type { GroundNode, VirtualNode } from "../world/Node";
 
 export type Statuses = Record<string, number>;
 
@@ -50,9 +51,14 @@ export default abstract class Entity {
 		this.location.AddEntity(this);
 	}
 
-	Move(toNode: GroundNode) {
+	Move(toNode: Node) {
+		let vToNode: VirtualNode = (toNode as VirtualNode);
+
+		if (vToNode.NestedNode != null)
+			toNode = vToNode.GetNextGroundNode();
+
 		this.location.RemoveEntity(this);
-		this.location = toNode;
+		this.location = toNode as GroundNode;
 		this.location.AddEntity(this);
 	}
 
