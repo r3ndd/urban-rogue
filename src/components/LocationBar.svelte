@@ -13,7 +13,7 @@
 
 		do {
 			path.push(node.Name);
-			node = node.Parent;
+			node = node.RegionParent;
 		} while (node != null);
 	}
 </script>

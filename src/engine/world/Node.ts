@@ -47,7 +47,12 @@ export const Flags_WideOpenSpace: EdgeFlags = {
 export default class Node {
 	protected edges: Map<Node, Edge>;
 
-	constructor(public readonly Name: string, public readonly Desc: string, public readonly Parent?: VirtualNode) {
+	constructor(
+		public readonly Name: string,
+		public readonly Desc: string,
+		public readonly RegionParent?: VirtualNode,
+		public readonly DirectParent?: VirtualNode,
+	) {
 		this.edges = new Map<Node, Edge>();
 	}
 
@@ -79,8 +84,13 @@ export default class Node {
 export class GroundNode extends Node {
 	protected entities: Map<NodeEntity, number>;
 
-	constructor(name: string, desc: string, parent: VirtualNode) {
-		super(name, desc, parent);
+	constructor(
+		name: string,
+		desc: string,
+		regionParent: VirtualNode,
+		directParent?: VirtualNode
+	) {
+		super(name, desc, regionParent, directParent);
 
 		this.entities = new Map<Entity, number>();
 	}
@@ -119,12 +129,15 @@ export class GroundNode extends Node {
 }
 
 export class VirtualNode extends Node {
-	public NestedNode: Node;
-
-	constructor(name: string, desc: string, parent?: VirtualNode, nestedNode?: Node) {
-		super(name, desc, parent);
-
-		this.NestedNode = nestedNode;
+	constructor(
+		name: string,
+		desc: string,
+		regionParent?: VirtualNode,
+		directParent?: VirtualNode,
+		public NestedNode?: Node,
+		public Distance: number = 0
+	) {
+		super(name, desc, regionParent, directParent);
 	}
 
 	GetNextGroundNode(): GroundNode {
@@ -138,10 +151,10 @@ export class VirtualNode extends Node {
 }
 
 export class Edge {
-	constructor(protected nodeA: Node, protected nodeB: Node, protected flags: EdgeFlags, protected length: Number = 0) { }
+	constructor(protected nodeA: Node, protected nodeB: Node, public Flags: EdgeFlags, protected length: number = 0) { }
 
 	UpdateFlag(flag: string, value: boolean) {
-		this.flags[flag] = value;
+		this.Flags[flag] = value;
 	}
 
 	get NodeA(): Node {
@@ -152,11 +165,7 @@ export class Edge {
 		return this.nodeB;
 	}
 
-	get Flags(): EdgeFlags {
-		return this.flags;
-	}
-
-	set Flags(_flags: EdgeFlags) {
-		this.flags = _flags;
+	get Distance(): number {
+		return this.length;
 	}
 }

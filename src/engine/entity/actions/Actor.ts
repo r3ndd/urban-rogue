@@ -48,4 +48,7 @@ export default abstract class Actor extends Entity {
 		});
 	}
 
+	get MoveTime(): number {
+		return 1;
+	}
 }

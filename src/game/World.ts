@@ -6,7 +6,7 @@ export default class UrbanRogueWorld extends World {
 	Generate() {
 		// Instantiate nodes
 		this.root = new VirtualNode("Basic House", "A basic house");
-		var driveway = new GroundNode("Driveway", "The driveway for the house", this.root);
+		var driveway = new GroundNode("Driveway", "The driveway for the house", this.root, this.root);
 		var frontDoor = new GroundNode("Front Door", "The front door of the house", this.root);
 		var backDoor = new GroundNode("Back Door", "The back door of the house", this.root);
 		var window = new GroundNode("Window", "The window of the house", this.root);

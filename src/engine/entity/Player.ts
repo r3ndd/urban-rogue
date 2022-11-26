@@ -8,25 +8,9 @@ export default abstract class Player extends Actor {
 
 	constructor(game: Game, _location: GroundNode) {
 		super(game, _location);
-
-		game.Engine.InputManager.RegisterKeyListener("m", this.handleMoveKey);
-		game.Engine.InputManager.RegisterKeyListener("c", this.handleCombatKey);
-		game.Engine.InputManager.RegisterNumKeyListener(this.handleNumKey);
 	}
 
 	async PrepareNextAction() {
-
-	}
-
-	handleMoveKey(event: KeyboardEvent) {
-
-	}
-
-	handleCombatKey(event: KeyboardEvent) {
-
-	}
-
-	handleNumKey(num: number, event: KeyboardEvent) {
 
 	}
 }
