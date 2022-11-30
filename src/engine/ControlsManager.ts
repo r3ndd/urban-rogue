@@ -5,8 +5,8 @@ import type { VirtualNode } from "./world/Node";
 import type Node from "./world/Node";
 
 export default abstract class ControlsManager {
-	protected movePage: number = 0;
 	protected moveViewNode: Node;
+	protected movePage: number = 0;
 
 	constructor(protected game: Game, protected state: string, useDefaults: boolean = true) {
 		if (useDefaults) {
@@ -36,10 +36,10 @@ export default abstract class ControlsManager {
 	OnNumKey(num: number, event: KeyboardEvent) {
 		switch (this.state) {
 			case "move":
-				for (let i in this.adjacentNodes) {
-					let node: Node = this.adjacentNodes[i];
+				for (let i = 0; i < this.adjacentNodes.length; i++) {
+					let node: Node = this.adjacentNodes[i - this.pageControlsIndex];
 
-					if (Number(i) == num) {
+					if (i == num) {
 						if ((this.moveViewNode as VirtualNode).NestedNode != null)
 							this.moveViewNode = (this.moveViewNode as VirtualNode).NestedNode;
 						else {
@@ -81,8 +81,11 @@ export default abstract class ControlsManager {
 		}
 	}
 
-	private get adjacentNodes(): Node[] {
+	protected get adjacentNodes(): Node[] {
 		return Array.from(this.moveViewNode.AdjacentNodes);
 	}
 
+	protected get pageControlsIndex(): number {
+		return this.movePage * 10;
+	}
 }
