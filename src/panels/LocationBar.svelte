@@ -1,14 +1,12 @@
 <script lang="ts">
-	import type Game from "../engine/Game";
+	import type UrbanRogue from "../game/UrbanRogue";
 	import type Node from "../engine/world/Node";
 
-	export let game: Game;
+	export let game: UrbanRogue;
 	let path: string[] = [];
 
-	game.Engine.AddRenderer(render);
-
-	function render(game: Game) {
-		var node: Node = game.Player.Location;
+	$: if (game) {
+		let node: Node = game.Player.Location;
 		path = [];
 
 		do {
@@ -18,13 +16,13 @@
 	}
 </script>
 
-<div class="location-bar">
+<div class="location-bar inverted">
 	{#each [...path].reverse() as location, i (location)}
 		<div class="location">
 			{location}
 		</div>
 		{#if i != path.length - 1}
-			<div>></div>
+			<div class="arrow">></div>
 		{/if}
 	{/each}
 </div>
@@ -35,5 +33,9 @@
 		flex-flow: row nowrap;
 		align-items: stretch;
 		justify-content: flex-start;
+	}
+
+	.arrow {
+		margin: 0px 3px;
 	}
 </style>

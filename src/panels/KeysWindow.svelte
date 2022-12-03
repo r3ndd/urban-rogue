@@ -2,9 +2,11 @@
 	import type Game from "../game/UrbanRogue";
 
 	export let game: Game;
-	game.Engine.AddRenderer(render);
 
-	function render() {}
+	let keyData: string[] = [];
+
+	$: if (game) {
+	}
 </script>
 
 <div class="keys-window" />

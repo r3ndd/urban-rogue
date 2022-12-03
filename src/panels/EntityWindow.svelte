@@ -1,10 +1,7 @@
 <script lang="ts">
-	import type Game from "../game/Game";
+	import type UrbanRogue from "../game/UrbanRogue";
 
-	export let game: Game;
-	game.engine.AddRenderer(render);
-
-	function render() {}
+	export let game: UrbanRogue;
 </script>
 
 <div class="entity-window" />

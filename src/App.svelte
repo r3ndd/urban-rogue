@@ -1,25 +1,27 @@
 <script lang="ts">
-	import DescriptionWindow from "./components/DescriptionWindow.svelte";
-	import EntityWindow from "./components/EntityWindow.svelte";
-	import InventoryWindow from "./components/InventoryWindow.svelte";
-	import KeysWindow from "./components/KeysWindow.svelte";
-	import LocationBar from "./components/LocationBar.svelte";
-	import StatsWindow from "./components/StatsWindow.svelte";
+	import EventWindow from "./panels/EventWindow.svelte";
+	import EntityWindow from "./panels/EntityWindow.svelte";
+	import InventoryWindow from "./panels/InventoryWindow.svelte";
+	import KeysWindow from "./panels/KeysWindow.svelte";
+	import StatsWindow from "./panels/StatsWindow.svelte";
+	import LocationBar from "./panels/LocationBar.svelte";
 
 	import UrbanRogue from "./game/UrbanRogue";
 
-	const game = new UrbanRogue();
+	let game = new UrbanRogue();
 	game.Engine.AddRenderer(render);
 	game.Load();
 	game.Start();
 
-	function render() {}
+	function render(_game: UrbanRogue) {
+		game = _game;
+	}
 </script>
 
 <main>
 	<div class="left-panel">
 		<LocationBar {game} />
-		<DescriptionWindow {game} />
+		<EventWindow {game} />
 		<EntityWindow {game} />
 		<KeysWindow {game} />
 	</div>
@@ -41,6 +43,8 @@
 	}
 
 	.left-panel {
+		flex-grow: 1;
+
 		display: flex;
 		flex-flow: column;
 		align-items: stretch;

@@ -8,6 +8,7 @@ export default abstract class Game {
 	protected world: World;
 	protected controls: ControlsManager;
 	protected fps: 10;
+	protected events: string[] = [];
 
 	constructor() {
 		this.engine = new Engine(this);
@@ -31,5 +32,9 @@ export default abstract class Game {
 
 	get Controls(): ControlsManager {
 		return this.controls;
+	}
+
+	get Events(): string[] {
+		return this.events;
 	}
 }
