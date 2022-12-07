@@ -7,26 +7,34 @@ export default class UrbanRogueControls extends ControlsManager {
 		super(game, "base");
 	}
 
-	GetControlsData(): Record<string, string> {
+	GetControlsData(): Record<string, Record<string, string>> {
 		switch (this.state) {
 			case "base":
 				return {
-					"M": "Move",
-					"I": "Inventory",
-					"Space": "Search commands",
+					"core": {
+						"M": "Move",
+						"I": "Inventory",
+						"Space": "Search commands",
+					},
+					"locations": {},
 				};
 			case "move":
-				var controlData = { "Esc": "Return" };
+				var controlData = {
+					"core": {
+						"Esc": "Return"
+					},
+					"locations": {},
+				};
 
 				if (this.moveViewNode.DirectParent != null)
-					controlData["K/UpArrow"] = "View Parent Location";
+					controlData.locations["K/UpArrow"] = "View Parent Location";
 
 				if ((this.moveViewNode as VirtualNode).NestedNode != null)
-					controlData["J/DownArrow"] = "View Nested Location";
+					controlData.locations["J/DownArrow"] = "View Nested Location";
 
 				for (let i = this.pageControlsIndex; i < this.adjacentNodes.length && i - this.pageControlsIndex < 10; i++) {
 					let node = this.adjacentNodes[i];
-					controlData[String(i - this.pageControlsIndex)] = node.Name;
+					controlData.locations[String(i - this.pageControlsIndex)] = node.Name;
 				}
 
 				return controlData;

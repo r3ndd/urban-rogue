@@ -17,7 +17,7 @@ export default abstract class ControlsManager {
 		}
 	}
 
-	abstract GetControlsData(): Record<string, string>;
+	abstract GetControlsData(): Record<string, Record<string, string>>;
 
 	OnEscKey(event: KeyboardEvent) {
 		this.state = "base";
@@ -87,5 +87,9 @@ export default abstract class ControlsManager {
 
 	protected get pageControlsIndex(): number {
 		return this.movePage * 10;
+	}
+
+	public get State(): string {
+		return this.state;
 	}
 }

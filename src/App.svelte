@@ -2,7 +2,7 @@
 	import EventWindow from "./panels/EventWindow.svelte";
 	import EntityWindow from "./panels/EntityWindow.svelte";
 	import InventoryWindow from "./panels/InventoryWindow.svelte";
-	import KeysWindow from "./panels/KeysWindow.svelte";
+	import ControlsBar from "./panels/ControlsBar.svelte";
 	import StatsWindow from "./panels/StatsWindow.svelte";
 	import LocationBar from "./panels/LocationBar.svelte";
 
@@ -23,7 +23,7 @@
 		<LocationBar {game} />
 		<EventWindow {game} />
 		<EntityWindow {game} />
-		<KeysWindow {game} />
+		<ControlsBar {game} />
 	</div>
 	<div class="right-panel">
 		<StatsWindow {game} />

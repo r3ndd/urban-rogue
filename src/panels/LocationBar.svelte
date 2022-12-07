@@ -33,6 +33,8 @@
 		flex-flow: row nowrap;
 		align-items: stretch;
 		justify-content: flex-start;
+
+		padding: 0px 0px 0px 5px;
 	}
 
 	.arrow {
