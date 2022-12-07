@@ -1,8 +1,8 @@
 import type Entity from "../entity/Entity";
 import type Game from "../Game";
 
-type NodeEntity = Entity | typeof Entity;
-type NodeType = "Ground" | "Virtual";
+export type NodeEntity = Entity | typeof Entity;
+export type NodeType = "Ground" | "Virtual";
 
 interface EdgeFlags {
 	movement: boolean
@@ -125,6 +125,10 @@ export class GroundNode extends Node {
 			this.RemovePassiveEntity(entity);
 			this.AddEntity(new (entity as any)(game, this));
 		}
+	}
+
+	get Entities(): Map<NodeEntity, number> {
+		return this.entities;
 	}
 }
 

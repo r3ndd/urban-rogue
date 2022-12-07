@@ -7,8 +7,8 @@ import type { GroundNode, VirtualNode } from "../world/Node";
 export type Statuses = Record<string, number>;
 
 export default abstract class Entity {
-	public readonly abstract Name: string;
-	public readonly abstract Desc: string;
+	public static readonly Name: string;
+	public static readonly Desc: string;
 	protected location: GroundNode;
 	protected statuses: Statuses;
 	protected reactions: Map<string, typeof Reaction>;

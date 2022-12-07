@@ -34,6 +34,7 @@
 		align-items: stretch;
 		justify-content: flex-start;
 
+		margin-bottom: 10px;
 		padding: 0px 0px 0px 5px;
 	}
 

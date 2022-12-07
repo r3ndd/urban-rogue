@@ -20,13 +20,14 @@
 <style>
 	.event-window {
 		flex-grow: 1;
+		flex-basis: 0%;
 
 		display: flex;
 		flex-flow: row nowrap;
 		align-items: stretch;
 		justify-content: flex-start;
 
-		padding: 10px 5px;
+		margin: 0px 5px 10px 5px;
 	}
 
 	.events {

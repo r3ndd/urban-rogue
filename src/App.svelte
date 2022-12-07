@@ -1,12 +1,13 @@
 <script lang="ts">
-	import EventWindow from "./panels/EventWindow.svelte";
-	import EntityWindow from "./panels/EntityWindow.svelte";
-	import InventoryWindow from "./panels/InventoryWindow.svelte";
-	import ControlsBar from "./panels/ControlsBar.svelte";
-	import StatsWindow from "./panels/StatsWindow.svelte";
-	import LocationBar from "./panels/LocationBar.svelte";
+	import EventWindow from "./ui/EventWindow.svelte";
+	import EntityWindow from "./ui/EntityWindow.svelte";
+	import InventoryWindow from "./ui/InventoryWindow.svelte";
+	import ControlsBar from "./ui/ControlsBar.svelte";
+	import StatsWindow from "./ui/StatsWindow.svelte";
+	import LocationBar from "./ui/LocationBar.svelte";
 
 	import UrbanRogue from "./game/UrbanRogue";
+	import ContextWindow from "./ui/ContextWindow.svelte";
 
 	let game = new UrbanRogue();
 	game.Engine.AddRenderer(render);
@@ -22,7 +23,7 @@
 	<div class="left-panel">
 		<LocationBar {game} />
 		<EventWindow {game} />
-		<EntityWindow {game} />
+		<ContextWindow {game} />
 		<ControlsBar {game} />
 	</div>
 	<div class="right-panel">
