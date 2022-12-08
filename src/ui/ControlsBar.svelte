@@ -1,8 +1,8 @@
 <script lang="ts">
+	import ControlsList from "../components/ControlsList.svelte";
 	import type Game from "../game/UrbanRogue";
 
 	export let game: Game;
-
 	let controlsData: Record<string, string> = {};
 
 	$: if (game) {
@@ -11,17 +11,7 @@
 </script>
 
 <div class="controls-bar">
-	{#each Object.keys(controlsData) as key (key)}
-		<div class="control">
-			<div class="key inverted">
-				{key}
-			</div>
-			:
-			<div class="desc">
-				{controlsData[key]}
-			</div>
-		</div>
-	{/each}
+	<ControlsList {controlsData} />
 </div>
 
 <style>
@@ -32,22 +22,5 @@
 		justify-content: flex-start;
 
 		padding: 0px 5px 5px 5px;
-	}
-
-	.control {
-		display: flex;
-		flex-flow: row nowrap;
-		align-items: center;
-		justify-content: flex-start;
-
-		margin-right: 15px;
-	}
-
-	.control .key {
-		padding: 0px 4px;
-	}
-
-	.control .desc {
-		margin-left: 5px;
 	}
 </style>

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type UrbanRogue from "../game/UrbanRogue";
 	import EntityWindow from "./EntityWindow.svelte";
+	import MoveWindow from "./MoveWindow.svelte";
 
 	export let game: UrbanRogue;
 	let state: string;
@@ -20,7 +21,9 @@
 
 {#if state == "base"}
 	<EntityWindow {game} />
-{:else if state == "move"}{/if}
+{:else if state == "move"}
+	<MoveWindow {game} />
+{/if}
 
 <style>
 	.context-window {

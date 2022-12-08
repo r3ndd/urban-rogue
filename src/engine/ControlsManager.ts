@@ -34,6 +34,8 @@ export default abstract class ControlsManager {
 	}
 
 	OnNumKey(num: number, event: KeyboardEvent) {
+		num = num - 1;
+
 		switch (this.state) {
 			case "move":
 				for (let i = 0; i < this.adjacentNodes.length; i++) {
@@ -76,6 +78,18 @@ export default abstract class ControlsManager {
 						if ((this.moveViewNode as VirtualNode).NestedNode != null)
 							this.moveViewNode = (this.moveViewNode as VirtualNode).NestedNode;
 						break;
+					case "left":
+						this.movePage--;
+
+						if (this.movePage < 0)
+							this.movePage = 0;
+						break;
+					case "right":
+						this.movePage++;
+
+						if (this.movePage + 1 > this.NumMovePages)
+							this.movePage = this.NumMovePages - 1;
+						break;
 				}
 				break;
 		}
@@ -91,5 +105,13 @@ export default abstract class ControlsManager {
 
 	public get State(): string {
 		return this.state;
+	}
+
+	public get MovePage(): number {
+		return this.movePage + 1;
+	}
+
+	public get NumMovePages(): number {
+		return Math.ceil(this.adjacentNodes.length / 10);
 	}
 }

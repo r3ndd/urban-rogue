@@ -26,15 +26,9 @@ export default class UrbanRogueControls extends ControlsManager {
 					"locations": {},
 				};
 
-				if (this.moveViewNode.DirectParent != null)
-					controlData.locations["K/UpArrow"] = "View Parent Location";
-
-				if ((this.moveViewNode as VirtualNode).NestedNode != null)
-					controlData.locations["J/DownArrow"] = "View Nested Location";
-
 				for (let i = this.pageControlsIndex; i < this.adjacentNodes.length && i - this.pageControlsIndex < 10; i++) {
 					let node = this.adjacentNodes[i];
-					controlData.locations[String(i - this.pageControlsIndex)] = node.Name;
+					controlData.locations[String(i - this.pageControlsIndex + 1)] = node.Name;
 				}
 
 				return controlData;
