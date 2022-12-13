@@ -4,7 +4,7 @@ import type { VirtualNode } from "../engine/world/Node";
 
 export default class UrbanRogueControls extends ControlsManager {
 	constructor(game: Game) {
-		super(game, "base");
+		super(game);
 	}
 
 	GetControlsData(): Record<string, Record<string, string>> {

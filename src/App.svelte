@@ -1,6 +1,5 @@
 <script lang="ts">
 	import EventWindow from "./ui/EventWindow.svelte";
-	import EntityWindow from "./ui/EntityWindow.svelte";
 	import InventoryWindow from "./ui/InventoryWindow.svelte";
 	import ControlsBar from "./ui/ControlsBar.svelte";
 	import StatsWindow from "./ui/StatsWindow.svelte";
@@ -12,7 +11,7 @@
 	let game = new UrbanRogue();
 	game.Engine.AddRenderer(render);
 	game.Load();
-	game.Start();
+	game.Run();
 
 	function render(_game: UrbanRogue) {
 		game = _game;

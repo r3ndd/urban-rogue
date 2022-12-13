@@ -1,19 +1,26 @@
 import type Game from "./Game";
-import TurnManager from "./entity/TurnManager";
-import InputManager from "./InputManager";
+import type TurnManager from "./entity/TurnManager";
+import type InputManager from "./InputManager";
+import type ControlsManager from "./ControlsManager";
 
 type Renderer = (game: Game) => void;
 
 export default class Engine {
-	public readonly TurnManager: TurnManager;
-	public readonly InputManager: InputManager;
+	public TurnManager: TurnManager;
+	public InputManager: InputManager;
+	public Controls: ControlsManager;
 	private renderers: Renderer[];
 	private renderInterval: NodeJS.Timer;
-	private fps: number;
 
-	constructor(private game: Game) {
-		this.TurnManager = new TurnManager();
-		this.InputManager = new InputManager();
+	constructor(
+		private game: Game,
+		_TurnManager: typeof TurnManager,
+		_InputManager: typeof InputManager,
+		_ControlsManager: typeof ControlsManager
+	) {
+		this.TurnManager = new _TurnManager();
+		this.InputManager = new _InputManager();
+		this.Controls = new (_ControlsManager as any)(game);
 		this.renderers = [];
 	}
 
@@ -26,8 +33,14 @@ export default class Engine {
 			renderer(this.game);
 	}
 
-	StartRenderLoop(_fps: number) {
-		this.renderInterval = setInterval(() => this.Render(), 1 / _fps);
-		this.fps = _fps;
+	async Run() {
+		this.StartRenderLoop();
+
+		while (true)
+			await this.TurnManager.ProcessTurnRound();
+	}
+
+	StartRenderLoop() {
+		this.renderInterval = setInterval(() => this.Render(), 1 / this.game.Fps);
 	}
 }

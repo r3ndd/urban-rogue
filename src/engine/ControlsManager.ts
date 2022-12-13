@@ -8,16 +8,18 @@ export default abstract class ControlsManager {
 	protected moveViewNode: Node;
 	protected movePage: number = 0;
 
-	constructor(protected game: Game, protected state: string, useDefaults: boolean = true) {
-		if (useDefaults) {
-			game.Engine.InputManager.RegisterKeyListener("Escape", (e: KeyboardEvent) => this.OnEscKey(e));
-			game.Engine.InputManager.RegisterKeyListener("m", (e: KeyboardEvent) => this.OnMKey(e));
-			game.Engine.InputManager.RegisterNumKeyListener((num: number, e: KeyboardEvent) => this.OnNumKey(num, e));
-			game.Engine.InputManager.RegisterDirKeyListener((dir: KeyDir, e: KeyboardEvent) => this.OnDirKey(dir, e));
-		}
-	}
+	constructor(protected game: Game, protected state: string = "base") { }
 
 	abstract GetControlsData(): Record<string, Record<string, string>>;
+
+	Init(useDefaults: boolean = true) {
+		if (useDefaults) {
+			this.game.Engine.InputManager.RegisterKeyListener("Escape", (e: KeyboardEvent) => this.OnEscKey(e));
+			this.game.Engine.InputManager.RegisterKeyListener("m", (e: KeyboardEvent) => this.OnMKey(e));
+			this.game.Engine.InputManager.RegisterNumKeyListener((num: number, e: KeyboardEvent) => this.OnNumKey(num, e));
+			this.game.Engine.InputManager.RegisterDirKeyListener((dir: KeyDir, e: KeyboardEvent) => this.OnDirKey(dir, e));
+		}
+	}
 
 	OnEscKey(event: KeyboardEvent) {
 		this.state = "base";

@@ -17,10 +17,7 @@ export default class InputManager {
 
 		addEventListener("keydown", (event: KeyboardEvent) => {
 			// Base handlers
-			var handlers = this.keyHandlers[event.key];
-
-			if (handlers == null)
-				return;
+			var handlers = this.keyHandlers[event.key] || [];
 
 			for (let handler of handlers)
 				handler(event);

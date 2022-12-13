@@ -1,13 +1,12 @@
 import Game from "../engine/Game";
+import TurnManager from "../engine/entity/TurnManager";
+import InputManager from "../engine/InputManager";
 import UrbanRogueControls from "./ControlsManager";
 import UrbanRogueWorld from "./World";
 
 export default class UrbanRogue extends Game {
 	constructor() {
-		super();
-
-		this.world = new UrbanRogueWorld(this);
-		this.controls = new UrbanRogueControls(this);
+		super(TurnManager, InputManager, UrbanRogueControls, UrbanRogueWorld);
 	}
 
 	Load() {
